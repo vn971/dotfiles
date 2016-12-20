@@ -14,7 +14,7 @@ mkdir -p "$dir"
 function launch_ff() {
 	disp="${DISPLAY#:}"
 	disp="${disp%.0}"
-	firejail --private="$dir" --whitelist=/tmp/.X11-unix/X"$disp" --profile=~/.fj/firefox.profile firefox -no-remote
+	firejail --private="$dir" --whitelist=/tmp/.X11-unix/X"$disp" --profile=~/.config/firejail/firefox.profile firefox -no-remote
 }
 
 if [[ -v noxephyr ]]; then
