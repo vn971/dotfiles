@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+set -o pipefail
+
+# same as `fj` command, but allow X11 access (to the current DISPLAY)
+
+disp="${DISPLAY#:}"
+disp="${disp%.0}"
+echo "$disp"
+
+firejail --whitelist=/tmp/.X11-unix/X"$disp" --profile=~/.config/firejail/panicX "$@"

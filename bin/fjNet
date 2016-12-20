@@ -1,0 +1,7 @@
+#!/bin/bash -eu
+set -o pipefail
+
+# same as `fj` command, but allow internet access
+
+~/bin/init-firejail-network.sh
+firejail --profile=~/.config/firejail/panicNet "$@"

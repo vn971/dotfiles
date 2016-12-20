@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+set -o pipefail
+
+# launches a command inside firejail with a profile named "panic"
+# Example usage:
+#   fj --whitelist="`pwd`" ps aux
+
+firejail --profile=~/.config/firejail/panic "$@"
