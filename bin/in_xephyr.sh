@@ -11,6 +11,8 @@
 # and executi via:
 #   in_xephyr my_bash_func
 
+{ # read the whole file before executing it
+
 function in_xephyr() {
 	source xepsource.sh
 	# TODO: set +e; execute the command; capture exit code; set -e; print exit code
@@ -23,3 +25,5 @@ function in_xephyr() {
 if type xephyr_me 1>/dev/null 2>/dev/null; then
 	in_xephyr xephyr_me
 fi
+
+}

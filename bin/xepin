@@ -1,5 +1,4 @@
 #!/bin/bash -eu
-set -o pipefail
 
 # Launches all remaining arguments ( $@ ) inside a new X11 Xephyr instance.
 #
@@ -9,7 +8,13 @@ set -o pipefail
 # This script is a simpler alternative to `in_xephyr.sh`
 # in case you don't need to run a whole bash function inside the new X11
 
+{ # read the whole file before executing it
+
+set -o pipefail
+
 source xepsource.sh
 "$@" || true
 firejail --quiet --shutdown="wtftw$disp" 1>/dev/null 2>/dev/null || true
 firejail --quiet --shutdown="xephyr$disp" 1>/dev/null 2>/dev/null || true
+
+}

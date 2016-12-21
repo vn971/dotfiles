@@ -1,8 +1,12 @@
 #!/bin/bash -eu
-set -o pipefail
 
 # launches a command inside firejail with a profile named "panic"
 # Example usage:
 #   fj --whitelist="`pwd`" ps aux
 
+{ # read the whole file before executing it
+set -o pipefail
+
 firejail --profile=~/.config/firejail/panic "$@"
+
+}
