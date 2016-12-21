@@ -1,4 +1,6 @@
 #!/bin/bash -eu
+{ # read the whole file before executing it
+set -o pipefail
 
 # This script launches a (firejail-ed) Xephyr instance,
 # an inner WM inside it (xfwm4 to be exact, 
@@ -8,9 +10,6 @@
 # Note that the app inside the container should take care for its isolation by itself.
 # For example, a GUI terminal app will not have access to parent's X11,
 # but it will have access to everything else.
-
-{ # read the whole file before executing it
-set -o pipefail
 
 if [ ! -v disp ]; then
 	disp="$(date +%s)"
@@ -82,4 +81,4 @@ firejail --noprofile \
 #(sleep 1; setxkbmap us,ru colemak, -option caps:none grp:ctrl_shift_toggle) &
 #(sleep 1; setxkbmap us,ru colemak, ) &
 
-}
+};exit

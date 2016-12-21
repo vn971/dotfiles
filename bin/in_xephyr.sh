@@ -12,6 +12,7 @@
 #   in_xephyr my_bash_func
 
 { # read the whole file before executing it
+set -o pipefail
 
 function in_xephyr() {
 	source xepsource.sh
@@ -26,4 +27,4 @@ if type xephyr_me 1>/dev/null 2>/dev/null; then
 	in_xephyr xephyr_me
 fi
 
-}
+};exit

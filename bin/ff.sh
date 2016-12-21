@@ -32,4 +32,4 @@ if [[ ! -v profile ]]; then
 	rm -rf "$dir/.cache"
 fi
 
-}
+};exit

@@ -9,7 +9,6 @@
 # in case you don't need to run a whole bash function inside the new X11
 
 { # read the whole file before executing it
-
 set -o pipefail
 
 source xepsource.sh
@@ -17,4 +16,4 @@ source xepsource.sh
 firejail --quiet --shutdown="wtftw$disp" 1>/dev/null 2>/dev/null || true
 firejail --quiet --shutdown="xephyr$disp" 1>/dev/null 2>/dev/null || true
 
-}
+};exit

@@ -11,4 +11,4 @@ disp="${disp%.0}"
 ~/bin/init-firejail-network.sh
 firejail --whitelist=/tmp/.X11-unix/X"$disp" --profile=~/.config/firejail/panicXNet "$@"
 
-}
+};exit

@@ -11,4 +11,4 @@ echo "$disp"
 
 firejail --whitelist=/tmp/.X11-unix/X"$disp" --profile=~/.config/firejail/panicX "$@"
 
-}
+};exit
