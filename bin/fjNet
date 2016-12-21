@@ -8,4 +8,4 @@ set -o pipefail
 ~/bin/init-firejail-network.sh
 firejail --profile=~/.config/firejail/panicNet "$@"
 
-};exit
+};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0

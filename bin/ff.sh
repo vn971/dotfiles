@@ -32,4 +32,4 @@ if [[ ! -v profile ]]; then
 	rm -rf "$dir/.cache"
 fi
 
-};exit
+};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0

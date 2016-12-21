@@ -81,4 +81,4 @@ firejail --noprofile \
 #(sleep 1; setxkbmap us,ru colemak, -option caps:none grp:ctrl_shift_toggle) &
 #(sleep 1; setxkbmap us,ru colemak, ) &
 
-};exit
+};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0

@@ -9,4 +9,4 @@ set -o pipefail
 
 firejail --profile=~/.config/firejail/panic "$@"
 
-};exit
+};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0
