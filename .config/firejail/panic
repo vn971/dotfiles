@@ -1,0 +1,7 @@
+include ~/.fj/panic.inc
+
+net none
+private-tmp
+blacklist /tmp/.X11-unix
+protocol inet6
+x11 none

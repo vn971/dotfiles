@@ -1,0 +1,15 @@
+caps.drop all
+#ipc-namespace
+netfilter
+nogroups
+nonewprivs
+noroot
+seccomp
+private-dev
+protocol unix,inet,inet6
+x11 xorg
+
+whitelist ~/.cache/icedtea-web
+whitelist ~/.java
+whitelist ~/data/dev/points/mp
+read-only ~/data/dev/points/mp
