@@ -3,9 +3,7 @@ About
 
 This repo is a collection of Vasya Novikov's helper utils, configs and other stuff used daily.
 
-Feel free to question / comment / discuss any files. I can't promise I will address all the questions, especially if they're big or not concrete, but I'll at least read them all.
-
-Parts marked with "vn971" are specific to me, like the "colemak" keyboard layout I use.
+Feel free to question / comment / discuss any files. Parts marked with "vn971" are specific to me, like the "colemak" keyboard layout I use, but 95% of the stuff is general-purpose.
 
 
 Overview - X11 isolation

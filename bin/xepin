@@ -16,4 +16,4 @@ source xepsource.sh
 firejail --quiet --shutdown="wtftw$disp" 1>/dev/null 2>/dev/null || true
 firejail --quiet --shutdown="xephyr$disp" 1>/dev/null 2>/dev/null || true
 
-};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0
+};ret="$?";return "$ret" 2>/dev/null || exit "$ret"

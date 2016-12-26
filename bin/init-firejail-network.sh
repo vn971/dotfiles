@@ -8,4 +8,4 @@ else
 	echo "" > ~/.config/firejail/netNow
 fi
 
-};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0
+};ret="$?";return "$ret" 2>/dev/null || exit "$ret"

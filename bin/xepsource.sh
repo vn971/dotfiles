@@ -53,21 +53,22 @@ wm_command="${wm_command:-xfwm4 --daemon}"
 #wm_command="${wm_command:- wtftw}"
 #setxkbmap -print | xkbcomp - :$disp
 
-firejail --noprofile \
-	--caps.drop=all \
-	--name="wtftw$disp" \
-	--net=none \
-	--nogroups \
-	--nonewprivs \
-	--noroot \
-	--nosound \
-	--private \
-	--private-dev \
-	--protocol=unix \
-	--seccomp \
-	--whitelist=/tmp/.X11-unix/X"$disp" \
-	-- $wm_command 1>/dev/null 2>/dev/null &
-
+if [[ ! -z "$wm_command" ]]; then
+	firejail --noprofile \
+		--caps.drop=all \
+		--name="wtftw$disp" \
+		--net=none \
+		--nogroups \
+		--nonewprivs \
+		--noroot \
+		--nosound \
+		--private \
+		--private-dev \
+		--protocol=unix \
+		--seccomp \
+		--whitelist=/tmp/.X11-unix/X"$disp" \
+		-- $wm_command 1>/dev/null 2>/dev/null &
+fi
 
 # vn971-specific. 
 # Note that layout switching will be broken inside Xephyr.
@@ -81,4 +82,4 @@ firejail --noprofile \
 #(sleep 1; setxkbmap us,ru colemak, -option caps:none grp:ctrl_shift_toggle) &
 #(sleep 1; setxkbmap us,ru colemak, ) &
 
-};[ x"${BASH_SOURCE[0]}" != x"$0" ] && return || exit 0
+};ret="$?";return "$ret" 2>/dev/null || exit "$ret"
