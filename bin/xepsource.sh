@@ -31,7 +31,7 @@ firejail --noprofile \
 	--protocol=unix \
 	--seccomp \
 	--whitelist=/tmp/.X11-unix \
-	-- Xephyr ${xephyrArgs} -no-host-grab :"$disp" -title "xephyr disp=$disp $*" 1>/dev/null &
+	-- Xephyr ${xephyrArgs} -no-host-grab :"$disp" -title "xephyr disp=$disp ${xephyr_window_name:-$*}" 1>/dev/null &
 
 xephyr_pid="$!"
 export xephyr_pid

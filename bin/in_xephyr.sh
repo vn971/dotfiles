@@ -28,6 +28,7 @@ function in_xephyr() {
 # Obviosly it's not clean to launch a function by hard-coded name while source-ing... 
 # But well, it's done anyway.
 if type xephyr_me 1>/dev/null 2>/dev/null; then
+	xephyr_window_name="$0"
 	in_xephyr xephyr_me
 fi
 
