@@ -19,16 +19,19 @@ set -o pipefail
 
 function in_xephyr() {
 	source xepsource.sh
-	# TODO: set +e; execute the command; capture exit code; set -e; print exit code
-	"$@" || true;
-	firejail --quiet --shutdown="wtftw$disp" || true
-	firejail --quiet --shutdown="xephyr$disp" || true
+	set +e
+	"$@"
+	local ex="$?"
+	firejail --quiet --shutdown="wtftw$disp"
+	firejail --quiet --shutdown="xephyr$disp"
+	set -e
+	return "$ex"
 }
 
 # Obviosly it's not clean to launch a function by hard-coded name while source-ing... 
 # But well, it's done anyway.
 if type xephyr_me 1>/dev/null 2>/dev/null; then
-	xephyr_window_name="$0"
+	export xephyr_window_name="$*"
 	in_xephyr xephyr_me
 fi
 

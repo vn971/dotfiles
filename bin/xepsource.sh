@@ -10,6 +10,9 @@ set -o pipefail
 # Note that the app inside the container should take care for its isolation by itself.
 # For example, a GUI terminal app will not have access to parent's X11,
 # but it will have access to everything else.
+#
+# If variable "xephyr_window_name" is set, it will be added to xephyr window title.
+# Otherwise "$1" will be added to xephyr window title.
 
 if [ ! -v disp ]; then
 	disp="$(date +%s)"

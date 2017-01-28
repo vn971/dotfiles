@@ -24,6 +24,7 @@ function launch_ff() {
 if [[ -v noxephyr || -f "$dir"/.noxephyr ]]; then
 	launch_ff
 else
+	xephyr_window_name="ff.sh $*"
 	source in_xephyr.sh
 	in_xephyr launch_ff
 fi
