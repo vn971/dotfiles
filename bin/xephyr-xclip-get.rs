@@ -35,16 +35,15 @@ fn main() {
 			println!("Found appropriate display: {}", display_name);
 
 			let output = Command::new("xclip")
-					// .arg("-selection").arg("XA_SECONDARY")
 					.arg("-selection").arg("clipboard")
 					.arg("-o")
+					.env("DISPLAY", format!(":{}", display_name))
 					.output().unwrap().stdout;
 			let output = String::from_utf8_lossy(&output);
 			println!("Input: {:?}", output);
 
 			let put_command = Command::new("xclip")
 					.arg("-selection").arg("clipboard")
-					.env("DISPLAY", format!(":{}", display_name))
 					.stdin(Stdio::piped())
 					.spawn().unwrap();
 			write!(put_command.stdin.unwrap(), "{}", output).unwrap();
