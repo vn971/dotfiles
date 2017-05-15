@@ -7,13 +7,15 @@ if [ "$#" -gt 1 ]; then
 	>&2 echo "Need zero arguments (to create a temp firefox instance)"
 	>&2 echo "or one argument (to create a named firefox instance)."
 elif [ "$#" -eq 1 ]; then
-	profile="$1"
-	dir="$HOME/.jails/firefox-$profile"
+	dir="$HOME/.jails/firefox-$1"
 else
 	dir="$HOME/.jails/deleteme-firefox-$(date +%s)"
 fi
 
-mkdir -p "$dir"
+if [ ! -d "$dir" ]; then
+	cp -a "$HOME"/.jails/deleteme-firefox-template "$dir"
+fi
+
 
 function launch_ff() {
 	disp="${DISPLAY#:}"

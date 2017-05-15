@@ -10,7 +10,7 @@ use std::{thread, time};
 // Note: this script is written to get some additional familiarity with Rust.
 // If you want something practical (time-effective, 1/4 LoC), consider using Bash.
 fn main() {
-	thread::sleep(time::Duration::from_millis(0));
+	thread::sleep(time::Duration::from_millis(200));
 
 	let window_name = Command::new("xdotool")
 			.arg("getactivewindow").arg("getwindowname")
@@ -36,10 +36,11 @@ fn main() {
 
 			let output = Command::new("xclip")
 					// .arg("-selection").arg("XA_SECONDARY")
-					.arg("-selection").arg("clipboard")
+					.arg("-selection").arg("XA_SECONDARY")
 					.arg("-o")
-					.output().unwrap().stdout;
-			let output = String::from_utf8_lossy(&output);
+					.output().unwrap();
+			assert!(output.status.success());
+			let output = String::from_utf8_lossy(&output.stdout);
 			println!("Input: {:?}", output);
 
 			let put_command = Command::new("xclip")

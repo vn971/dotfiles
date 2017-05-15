@@ -3,7 +3,7 @@
 set -o pipefail
 
 # This script launches a (firejail-ed) Xephyr instance,
-# an inner WM inside it (xfwm4 to be exact, 
+# an inner WM inside it (xfwm4 to be exact,
 # because I use xfce, but that can be overridden),
 # and then lets you launch your specific app inside this container.
 #
@@ -34,7 +34,9 @@ firejail --noprofile \
 	--protocol=unix \
 	--seccomp \
 	--whitelist=/tmp/.X11-unix \
-	-- Xephyr ${xephyrArgs} -no-host-grab :"$disp" -title "xephyr disp=$disp ${xephyr_window_name:-$*}" 1>/dev/null &
+	Xephyr ${xephyrArgs} -no-host-grab :"$disp" \
+		-title "xephyr disp=$disp ${xephyr_window_name:-$*}" \
+		-name "xephyr disp=$disp" 1>/dev/null &
 
 xephyr_pid="$!"
 export xephyr_pid
@@ -73,16 +75,9 @@ if [[ ! -z "$wm_command" ]]; then
 		-- $wm_command 1>/dev/null 2>/dev/null &
 fi
 
-# vn971-specific. 
-# Note that layout switching will be broken inside Xephyr.
-# you can use an alternative switching method inside Xephyr as I currently do.
-#
+# vn971-specific.
 # It'd be great if Xephyr could just forward keyboard layout inside its X11,
 # but it does not have such functionality.
-# TODO: write a daemon-like thing to watch Xephyr and change guest layout whenever parent's changes?
 (sleep 1; setxkbmap us,ru colemak, -option grp:ctrl_shift_toggle grp:caps_toggle) 1>/dev/null &
-#(sleep 1; setxkbmap us,ru colemak, -option grp:ctrl_shift_toggle) &
-#(sleep 1; setxkbmap us,ru colemak, -option caps:none grp:ctrl_shift_toggle) &
-#(sleep 1; setxkbmap us,ru colemak, ) &
 
 };ret="$?";return "$ret" 2>/dev/null || exit "$ret"
